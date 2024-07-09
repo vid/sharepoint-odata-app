@@ -16,6 +16,7 @@ steps:
 
 - script: |
     npm run clean
+    npm run update-manifest --cdnpath https://<your-cdn-location>
     npm run build
     npm run package
   displayName: 'Build and Package SPFx Solution'

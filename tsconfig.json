@@ -8,6 +8,7 @@
     "declaration": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
     "jsx": "react",
     "types": ["chai", "mocha", "node"]
   },
