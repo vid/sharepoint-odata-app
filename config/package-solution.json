@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sharepoint-odata-app-client-side-solution",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "features": [
+      {
+        "title": "sharepoint-odata-app Feature",
+        "description": "The feature that activates elements of the sharepoint-odata-app solution.",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": ["elements.xml"]
+        }
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sharepoint-odata-app.sppkg"
+  }
+}

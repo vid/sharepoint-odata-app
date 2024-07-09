@@ -13,6 +13,7 @@
     "deploy-sppkg": "gulp deploy-sppkg"
   },
   "dependencies": {
+    "@microsoft/rush-stack-compiler": "^0.6.0",
     "@microsoft/sp-core-library": "^1.12.1",
     "@microsoft/sp-http": "^1.12.1",
     "@microsoft/sp-property-pane": "^1.12.1",
