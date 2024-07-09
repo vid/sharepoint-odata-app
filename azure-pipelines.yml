@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  CDN_PATH: $(CDN_PATH)  # Defined in Azure DevOps
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -16,7 +19,7 @@ steps:
 
 - script: |
     npm run clean
-    npm run update-manifest --cdnpath https://<your-cdn-location>
+    npm run update-manifest --cdnpath $(CDN_PATH)
     npm run build
     npm run package
   displayName: 'Build and Package SPFx Solution'
