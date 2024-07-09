@@ -12,14 +12,13 @@ steps:
 
 - script: |
     npm install
-    npm install -g gulp
   displayName: 'Install npm packages'
 
 - script: |
-    gulp clean
-    gulp bundle --ship
-    gulp package-solution --ship
-  displayName: 'Bundle and Package SPFx Solution'
+    npm run clean
+    npm run build
+    npm run package
+  displayName: 'Build and Package SPFx Solution'
 
 - task: PublishBuildArtifacts@1
   inputs:
