@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  SPO_SITE_URL: 'https://yourtenant.sharepoint.com/sites/yoursite'
+  SPO_CLIENT_ID: 'your-client-id'
+  SPO_CLIENT_SECRET: 'your-client-secret'
+  SPO_TENANT: 'your-tenant.onmicrosoft.com'
+
+steps:
+- task: UseNode@1
+  inputs:
+    version: '14.x'
+  displayName: 'Use Node.js'
+
+- script: |
+    npm install -g @pnp/office365-cli
+  displayName: 'Install Office 365 CLI'
+
+- script: |
+    o365 login --authType password --userName ${{ variables.SPO_USER }} --password ${{ variables.SPO_PASSWORD }}
+  displayName: 'Login to SharePoint Online'
+
+- script: |
+    o365 spo app add --filePath $(Build.ArtifactStagingDirectory)/drop/your-solution.sppkg --overwrite --appCatalogUrl ${{ variables.SPO_SITE_URL }}
+  displayName: 'Upload App to App Catalog'
+
+- script: |
+    o365 spo app deploy --name your-solution.sppkg --appCatalogUrl ${{ variables.SPO_SITE_URL }} --skipFeatureDeployment
+  displayName: 'Deploy App'

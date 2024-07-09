@@ -1,0 +1,28 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm install -g gulp
+  displayName: 'Install npm packages'
+
+- script: |
+    gulp clean
+    gulp bundle --ship
+    gulp package-solution --ship
+  displayName: 'Bundle and Package SPFx Solution'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: 'sharepoint/solution'
+    artifactName: 'drop'
+  displayName: 'Publish Package'
